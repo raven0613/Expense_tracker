@@ -1,0 +1,101 @@
+/* reset css */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.btn,
+button,
+button:focus,
+input:focus,
+textarea:focus,
+select,
+select:focus,
+a:focus {
+  outline: 0px !important;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+button[disabled] {
+  pointer-events: none;
+}
+
+input {
+  padding: 0;
+}
+
+input:required {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+input:invalid {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.nav__header {
+  width: 100%;
+  background: #e6e6e6;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 0.5rem 1fr 10fr 1fr 0.5rem;
+      grid-template-columns: 0.5rem 1fr 10fr 1fr 0.5rem;
+  -ms-grid-rows: 3.5rem;
+      grid-template-rows: 3.5rem;
+      grid-template-areas: ". logo . login-logout .";
+}
+
+.nav__header--logo {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: logo;
+}
+
+.nav__header--login, .nav__header--logout {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: login-logout;
+}
+/*# sourceMappingURL=style.css.map */
