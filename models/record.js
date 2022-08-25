@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const recordSchema = new Schema({
   id: {
-    type: String,
+    type: Number,
     required: true
   },
   name: {
@@ -15,19 +15,25 @@ const recordSchema = new Schema({
     required: true,
     default: Date.now
   },
+  amount: {
+    type: Number,
+    required: true
+  },
   userId: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    index: true,
+    type: Number,
     required: true
   },
   categoryId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Category',
-    index: true,
+    type: Number,
     required: true
   }
 })
+  // categoryId: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Category',
+  //   index: true,
+  //   required: true
+  // }
 
 
 module.exports = mongoose.model('Record' , recordSchema);

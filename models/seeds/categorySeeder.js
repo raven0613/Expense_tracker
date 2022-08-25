@@ -14,13 +14,21 @@ const CATEGORY = {
 db.once('open' , () => {
 
   return Promise.all(Array.from({ length: 5 } , (_value , i) => 
-    Category.create({
-      name: Object.keys(CATEGORY)[i],
-      id: i+1
+    Category
+    .findOne({ id : i+1 })
+    .then(category => {
+      if (!category) {
+        return Category.create({
+          id: i+1,
+          name: Object.keys(CATEGORY)[i]
+        })
+      }
     })
+    .catch(err => console.log(err))
   ))
   .then(() => {
-    console.log('done')
+    console.log('categorySeed done')
     process.exit();
   })
+  .catch(err => console.log(err))
 })
