@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI , { useUnifiedTopology: true , useNewUrlParser: true });
+require('dotenv').config();
+mongoose.connect(process.env.MONGODB_URI_EXPENSE , { useUnifiedTopology: true , useNewUrlParser: true });
 
 const db = mongoose.connection;
 

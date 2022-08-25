@@ -4,7 +4,7 @@ const app = express();
 const exphdb = require('express-handlebars');
 const PORT = process.env.PORT;
 const routes = require('./routes');
-const db = require('./config/mongoose');
+require('./config/mongoose');
 
 
 app.engine('handlebars' , exphdb.engine({ defaultLayout : 'main' }));
