@@ -4,10 +4,12 @@ const app = express();
 const exphdb = require('express-handlebars');
 const PORT = process.env.PORT;
 const routes = require('./routes');
+const db = require('./config/mongoose');
 
 
 app.engine('handlebars' , exphdb.engine({ defaultLayout : 'main' }));
 app.set('view engine' , 'handlebars');
+
 
 app.use(express.static('public'))
 app.use(routes);
