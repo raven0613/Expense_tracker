@@ -1,6 +1,11 @@
+if (process.env.NODE_ENV !== 'profuction') {
+  require('dotenv').config();
+}
+
 const passport = require('passport');
 const User = require('../models/user');
 const localStrategy = require('passport-local').Strategy;
+const facebookStrategy = require('passport-facebook').Strategy;
 const bcrypt = require('bcryptjs');
 
 module.exports = (app) => {
@@ -30,6 +35,40 @@ module.exports = (app) => {
       .catch(err => done(err , false))
     })
     .catch(err => done(err , false))
+  }))
+
+  passport.use(new facebookStrategy({
+    clientID: process.env.FACEBOOK_ID,
+    clientSecret: process.env.FACEBOOK_SECRET,
+    callbackURL: process.env.FACEBOOK_CALLBACK,
+    profileFields: ['email' , 'displayName']
+  } , (accessToken, refreshToken, profile, done) => {
+    const {name , email} = profile._json;
+    const randomPassword = Math.random().toString(36).slice(-8)
+
+    User.find()
+    .then(user => {
+      const userCount = user.length;
+      return userCount;
+    })
+    .then(userCount => {
+
+      User.findOne({ email })
+      .then(user => {
+        if (!user) {
+          return bcrypt.genSalt(10)
+          .then(salt => bcrypt.hash(randomPassword , salt))
+          .then(hash => {
+            return User.create({ id : userCount + 1 , name , email , password : hash })
+          })
+          .then(user => done(null , user))
+          .catch(err => done(err , false))
+        }
+      })
+    })
+
+
+
   }))
 
 

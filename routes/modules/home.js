@@ -1,9 +1,20 @@
 const express = require('express');
+const passport = require('passport')
+
 const router = express.Router();
 const Record = require('../../models/record');
 const Category = require('../../models/category');
 const categoryIcon = require('../../public/scripts/categoryIcon');
-const authenticator = require('../../middleware/auth')
+
+
+router.get('/auth/facebook', passport.authenticate('facebook'));
+
+//get /users/login/facebook
+router.get('/auth/facebook/callback' , passport.authenticate('facebook' , { 
+  failureRedirect : '/users/login', 
+  successRedirect : '/'
+} , { scope: ['email', 'public_profile'] }))
+
 
 router.get('/' , (req , res) => {
   const userId = 1;

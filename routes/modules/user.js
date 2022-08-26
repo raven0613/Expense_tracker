@@ -60,6 +60,12 @@ router.post('/login' , passport.authenticate('local' , {
   successRedirect : '/'
 }))
 
+//post /users/login/facebook
+router.post('/login/facebook' , passport.authenticate('local' , { 
+  failureRedirect : '/users/login', 
+  successRedirect : '/'
+}))
+
 //get /users/logout
 router.get('/logout' , (req , res) => {
   req.logout();
