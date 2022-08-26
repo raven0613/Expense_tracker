@@ -1,0 +1,20 @@
+<div class="container">
+  <form action="/users/register" method="POST">
+    <p>註冊</p>
+    <label for="user-name" class="user-name-label">名稱*</label>
+    <input type="text" name="name" id="user-name" class="user-name" value="{{ users.name }}" required> 
+
+    <label for="user-email" class="user-email-label">email*</label>
+    <input type="text" name="email" id="user-email" class="user-email" value="{{ users.email }}" required>
+
+    <label for="user-password" class="user-password-label">密碼*</label>
+    <input type="password" name="password" id="user-password" class="user-password" value="{{ users.password }}" required>
+
+    <label for="user-confirmedPassword" class="user-confirmedPassword-label">確認密碼*</label>
+    <input type="password" name="confirmedPassword" id="user-confirmedPassword" class="user-confirmedPassword" value="{{ users.confirmedPassword }}" required>
+
+    <button type="submit">註冊</button>
+    <a href="">Facebook註冊</a>
+    已有帳號? <a href="/users/login">登入</a>
+  </form>
+</div>

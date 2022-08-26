@@ -1,0 +1,14 @@
+<div class="container">
+  <form action="">
+    <p>登入</p>
+    <label for="user-name" class="user-name-label">名稱*</label>
+    <input type="text" name="name" id="user-name" class="user-name" value="{{ users.name }}" required> 
+    <label for="user-email" class="user-email-label">email*</label>
+    <input type="text" name="email" id="user-email" class="user-email" value="{{ users.email }}" required>
+    <label for="user-password" class="user-password-label">密碼*</label>
+    <input type="text" name="password" id="user-password" class="user-password" value="{{ users.password }}" required>
+    <button type="submit">登入</button>
+    <a href="">Facebook登入</a>
+    沒有帳號? <a href="/users/register">註冊</a>
+  </form>
+</div>
