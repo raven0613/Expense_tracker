@@ -1,8 +1,29 @@
 const express = require('express')
-const router = express.Router();
+
 const Record = require('../../models/record');
 const User = require('../../models/user');
+const router = express.Router();
 
+
+
+//put /records/id
+router.put('/:id' , (req , res) => {
+  const _id = req.params.id;
+  const userId = 1;
+  const {name , date , category , amount} = req.body;
+  console.log(req.body)
+  return Record.findOne({ userId , _id })
+        .then(records => {
+          records.name = name;
+          records.date = date;
+          records.categoryId = category;
+          records.amount = amount;
+          return records.save();
+        })
+        .then(() => res.redirect('/'))
+        .catch(err => console.log(err))
+
+})
 
 //get /records/new
 router.get('/new' , (req , res) => {
@@ -27,7 +48,20 @@ router.post('/' , (req , res) => {
 
 })
 
-//put /records/id
+//get /records/id/edit
+router.get('/:id/edit' , (req , res) => {
+  const _id = req.params.id;
+  const userId = 1;
+  //誰selected?
+  return Record.findOne({ userId , _id })
+        .lean()
+        .then(records => {
+          return res.render('edit' , { records })
+        })
+        .catch(err => console.log(err))
+})
+
+
 
 //delete /records/id
 
