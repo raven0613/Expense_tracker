@@ -3,6 +3,7 @@ const router = express.Router();
 const Record = require('../../models/record');
 const Category = require('../../models/category');
 const categoryIcon = require('../../public/scripts/categoryIcon');
+const authenticator = require('../../middleware/auth')
 
 router.get('/' , (req , res) => {
   const userId = 1;

@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
+
+if (process.env.NODE_ENV !== 'profuction') {
+  require('dotenv').config();
+}
+
 mongoose.connect(process.env.MONGODB_URI_EXPENSE , { useUnifiedTopology: true , useNewUrlParser: true });
 
 const db = mongoose.connection;
