@@ -1,14 +1,14 @@
 <div class="container">
   <div class="top__selector">
     <label for="category-selector">
-        <select name="category" id="category-selector" class="category-selector">
-          <option class="category-selector-option" value="">類別</option>
-          <option class="category-selector-option" value="">家居物業</option>
-          <option class="category-selector-option" value="">交通出行</option>
-          <option class="category-selector-option" value="">休閒娛樂</option>
-          <option class="category-selector-option" value="">餐飲食品</option>
-          <option class="category-selector-option" value="">其他</option>
-        </select>
+      <select name="category" id="category-selector" class="category-selector">
+        <option class="category-selector-option" value="">類別</option>
+        <option class="category-selector-option" value="">家居物業</option>
+        <option class="category-selector-option" value="">交通出行</option>
+        <option class="category-selector-option" value="">休閒娛樂</option>
+        <option class="category-selector-option" value="">餐飲食品</option>
+        <option class="category-selector-option" value="">其他</option>
+      </select>
     </label>
 
   </div>
@@ -18,14 +18,17 @@
     <span>25260</span>
   </div>
 
+  {{#each records}}
   <div class="bottom__records">
     <div class="bottom__records--item">
-      <img class="bottom__item--img" src="https://fontawesome.com/icons/home?style=solid" alt="">
-      <div class="bottom__item--name">
-        <p>午餐</p>
-        <span>2022/8/24</span>
+      <div class="bottom__item--img">
+        {{{this.icon}}}
       </div>
-      <span class="bottom__item--price">60</span>
+      <div class="bottom__item--name">
+        <p>{{this.name}}</p>
+        <span>{{this.date}}</span>
+      </div>
+      <span class="bottom__item--price">{{this.amount}}</span>
 
       <div class="bottom__item--controller">
         <a class="bottom__item--controlbtn" href="/records/edit">修改</a>
@@ -34,7 +37,7 @@
 
     </div>
   </div>
-
+  {{/each}}
 
   <a class="bottom__addbtn" href="/records/new">
     <div class="bottom__add">

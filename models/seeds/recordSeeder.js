@@ -1,8 +1,8 @@
 const db = require('../../config/mongoose');
 const bcrypt = require('bcryptjs');
 const User = require('../user')
-const Category = require('../category');
 const Record = require('../record');
+
 
 
 
@@ -21,12 +21,11 @@ const seedUser = {
   password: '12345678'
 }
 
-
-function createRecord (data , user){
+function createRecord (data , user , recordQuantity){
   return Promise.all(Array.from(
     { length: data.length } , (_value , i) => {
       return Record.create({
-        id: i,
+        id: recordQuantity + i +1,
         name: data[i].name,
         amount: data[i].amount,
         userId: user.id,
@@ -38,6 +37,7 @@ function createRecord (data , user){
 
 
 db.once('open' , () => {
+
   User
   .findOne({ email : seedUser.email })
   .then(user => {
@@ -52,12 +52,30 @@ db.once('open' , () => {
         password: hash,
       }))
       .then(user => {
-        return createRecord (seedRecords , user)
+
+        return Record.find()
+        .then(record => {
+          console.log(record.length)
+          return record.length;
+        })
+        .then(quantity => {
+          return createRecord (seedRecords , user , quantity)
+        })
+        .catch(err => console.log(err))
       })
       .catch(err => console.log(err))
     }
     if (user) {
-      return createRecord (seedRecords , user)
+      
+      return Record.find()
+      .then(record => {
+        return record.length;
+      })
+      .then(quantity => {
+        return createRecord (seedRecords , user , quantity)
+      })
+      .catch(err => console.log(err))
+ 
     }
   })
   .then(() => {

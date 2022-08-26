@@ -1,16 +1,35 @@
 const express = require('express')
 const router = express.Router();
+const Record = require('../../models/record');
+const User = require('../../models/user');
 
-const CATEGORY = {
-  家居物業: "https://fontawesome.com/icons/home?style=solid",
-  交通出行: "https://fontawesome.com/icons/shuttle-van?style=solid",
-  休閒娛樂: "https://fontawesome.com/icons/grin-beam?style=solid",
-  餐飲食品: "https://fontawesome.com/icons/utensils?style=solid",
-  其他: "https://fontawesome.com/icons/pen?style=solid"
-}
 
+//get /records/new
 router.get('/new' , (req , res) => {
   res.render('new')
 })
+
+//post /records
+router.post('/' , (req , res) => {
+  const {name , date , category , amount} = req.body;
+
+  Record.find()
+  .then(record => {
+    return record.length;
+  })
+  .then(quantity => {
+    return Record.create({
+      id : quantity + 1 , name , date , amount , userId : 1 , categoryId : category
+    })
+  })
+  .then(() => res.redirect('/'))
+  .catch(err => console.log(err))
+
+})
+
+//put /records/id
+
+//delete /records/id
+
 
 module.exports = router;
