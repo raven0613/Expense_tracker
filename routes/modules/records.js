@@ -11,7 +11,7 @@ router.put('/:id' , (req , res) => {
   const _id = req.params.id;
   const userId = 1;
   const {name , date , category , amount} = req.body;
-  console.log(req.body)
+
   return Record.findOne({ userId , _id })
         .then(records => {
           records.name = name;
@@ -64,6 +64,17 @@ router.get('/:id/edit' , (req , res) => {
 
 
 //delete /records/id
+router.delete('/:id' , (req , res) => {
+  const _id = req.params.id;
+  const userId = 1;
+
+  return Record.findOne({ userId , _id })
+        .then(records => {
+          return records.delete();
+        })
+        .then(() => res.redirect('/'))
+        .catch(err => console.log(err))
+})
 
 
 module.exports = router;

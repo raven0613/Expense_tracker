@@ -32,7 +32,9 @@
 
       <div class="bottom__item--controller">
         <a class="bottom__item--controlbtn" href="/records/{{ this._id }}/edit">修改</a>
-        <a class="bottom__item--controlbtn" href="/records/delete">刪除</a>
+        <form action="/records/{{ this._id }}?_method=DELETE" method="POST">
+          <button class="bottom__item--controlbtn" type="submit">刪除</button>
+        </form>
       </div>
 
     </div>
