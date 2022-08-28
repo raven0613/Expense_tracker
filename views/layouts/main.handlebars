@@ -12,9 +12,12 @@
 </head>
 <body>
   <nav class="nav__header">
-    <a class="nav__header--logo" href="/">我的家庭記帳本</a>
+    <a class="nav__header--logo" href="/">{{#if isAuthenticated}}{{user.id}}{{else}}我{{/if}}的家庭記帳本</a>
+    {{#if isAuthenticated}}
     <a class="nav__header--logout" href="/users/logout">登出</a>
+    {{else}}
     <a class="nav__header--login" href="/users/login">登入</a>
+    {{/if}}
   </nav>
 
   {{{ body }}}

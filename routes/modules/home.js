@@ -7,17 +7,11 @@ const Category = require('../../models/category');
 const categoryIcon = require('../../public/scripts/categoryIcon');
 
 
-router.get('/auth/facebook', passport.authenticate('facebook'));
-
-//get /users/login/facebook
-router.get('/auth/facebook/callback' , passport.authenticate('facebook' , { 
-  failureRedirect : '/users/login', 
-  successRedirect : '/'
-} , { scope: ['email', 'public_profile'] }))
 
 
 router.get('/' , (req , res) => {
-  const userId = 1;
+  const userId = req.user.id;
+  let totalAmount = 0;
 
   Record.find({ userId })
         .lean()
@@ -29,11 +23,13 @@ router.get('/' , (req , res) => {
             //合併兩個物件
             const newAppendObj = { ...record , ...iconObj }
             newRecordsArr.push(newAppendObj)
+
+            totalAmount += record.amount;
           })
           return newRecordsArr;
         })
         .then(newRecordsArr => {
-          return res.render('index' , { records : newRecordsArr })
+          return res.render('index' , { records : newRecordsArr , totalAmount })
         })
         .catch(err => console.log(err))
 })

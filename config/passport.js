@@ -64,7 +64,9 @@ module.exports = (app) => {
           .then(user => done(null , user))
           .catch(err => done(err , false))
         }
+        return done(null , user)
       })
+      .catch(err => done(err , false))
     })
 
 

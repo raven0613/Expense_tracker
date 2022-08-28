@@ -10,7 +10,7 @@ const authenticator = require('../middleware/auth');
 router.use('/auth' , auth);
 router.use('/records' , authenticator , records);
 router.use('/users' , user);
-router.use('/' , home);
+router.use('/' , authenticator , home);
 
 
 

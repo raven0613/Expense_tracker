@@ -9,7 +9,7 @@ const router = express.Router();
 //put /records/id
 router.put('/:id' , (req , res) => {
   const _id = req.params.id;
-  const userId = 1;
+  const userId = req.user.id;
   const {name , date , category , amount} = req.body;
 
   return Record.findOne({ userId , _id })
@@ -33,6 +33,7 @@ router.get('/new' , (req , res) => {
 //post /records
 router.post('/' , (req , res) => {
   const {name , date , category , amount} = req.body;
+  const userId = req.user.id;
 
   Record.find()
   .then(record => {
@@ -40,7 +41,7 @@ router.post('/' , (req , res) => {
   })
   .then(quantity => {
     return Record.create({
-      id : quantity + 1 , name , date , amount , userId : 1 , categoryId : category
+      id : quantity + 1 , name , date , amount , userId , categoryId : category
     })
   })
   .then(() => res.redirect('/'))
@@ -51,7 +52,7 @@ router.post('/' , (req , res) => {
 //get /records/id/edit
 router.get('/:id/edit' , (req , res) => {
   const _id = req.params.id;
-  const userId = 1;
+  const userId = req.user.id;
   //誰selected?
   return Record.findOne({ userId , _id })
         .lean()
@@ -66,7 +67,7 @@ router.get('/:id/edit' , (req , res) => {
 //delete /records/id
 router.delete('/:id' , (req , res) => {
   const _id = req.params.id;
-  const userId = 1;
+  const userId = req.user.id;
 
   return Record.findOne({ userId , _id })
         .then(records => {
