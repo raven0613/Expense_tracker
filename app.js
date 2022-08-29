@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const usePassport = require('./config/passport');
 
+
 if (process.env.NODE_ENV !== 'profuction') {
   require('dotenv').config();
 }
@@ -26,7 +27,6 @@ app.use(session({
 usePassport(app);
 
 app.use((req , res , next) => {
-  console.log(req.user)
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.user = req.user;
   next();
@@ -37,7 +37,6 @@ app.use(express.urlencoded({ extended : true }));
 app.use(methodOverride('_method'));
 
 app.use(routes);
-
 
 
 app.listen(PORT , (req , res) => {

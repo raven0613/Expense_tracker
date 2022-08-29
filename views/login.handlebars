@@ -11,9 +11,9 @@
 
     <div class="main-area">
       <p class="title">登入</p>
-      <input type="text" name="email" id="user-email" class="user-email" value="{{ users.email }}" required>
+      <input type="text" name="email" id="user-email" class="user-email" value="{{ users.email }}" placeholder="user@example.com" required>
 
-      <input type="password" name="password" id="user-password" class="user-password" value="{{ users.password }}" required>
+      <input type="password" name="password" id="user-password" class="user-password" value="{{ users.password }}" placeholder="password" required>
 
       <button class="record-button" type="submit">登入</button>
       <a class="record-button" href="/auth/facebook">Facebook登入</a>

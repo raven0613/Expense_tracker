@@ -1,13 +1,13 @@
 <div class="container">
   <div class="top__selector">
     <label for="category-selector">
-      <select name="category" id="category-selector" class="category-selector">
-        <option class="category-selector-option" value="">類別</option>
-        <option class="category-selector-option" value="1">家居物業</option>
-        <option class="category-selector-option" value="2">交通出行</option>
-        <option class="category-selector-option" value="3">休閒娛樂</option>
-        <option class="category-selector-option" value="4">餐飲食品</option>
-        <option class="category-selector-option" value="5">其他</option>
+      <select name="category" id="category-selector" class="category-selector" onchange="window.location.href=this.value;">
+        <option class="category-selector-option" value="/">類別</option>
+        <option class="category-selector-option" value="/category/1" {{one_selected}}>家居物業</option>
+        <option class="category-selector-option" value="/category/2" {{two_selected}}>交通出行</option>
+        <option class="category-selector-option" value="/category/3" {{three_selected}}>休閒娛樂</option>
+        <option class="category-selector-option" value="/category/4" {{four_selected}}>餐飲食品</option>
+        <option class="category-selector-option" value="/category/5" {{five_selected}}>其他</option>
       </select>
     </label>
 

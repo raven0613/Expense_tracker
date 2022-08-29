@@ -14,13 +14,13 @@
 
     <div class="main-area">
       <p class="title">註冊</p>
-      <input type="text" name="name" id="user-name" class="user-name" value="{{ users.name }}" required> 
+      <input type="text" name="name" id="user-name" class="user-name" value="{{ users.name }}" placeholder="name" required> 
 
-      <input type="text" name="email" id="user-email" class="user-email" value="{{ users.email }}" required>
+      <input type="text" name="email" id="user-email" class="user-email" value="{{ users.email }}" placeholder="user@example.com" required>
 
-      <input type="password" name="password" id="user-password" class="user-password" value="{{ users.password }}" required>
+      <input type="password" name="password" id="user-password" class="user-password" value="{{ users.password }}" placeholder="password" required>
 
-      <input type="password" name="confirmedPassword" id="user-confirmedPassword" class="user-confirmedPassword" value="{{ users.confirmedPassword }}" required>
+      <input type="password" name="confirmedPassword" id="user-confirmedPassword" class="user-confirmedPassword" placeholder="password" value="{{ users.confirmedPassword }}" required>
 
       <button class="record-button" type="submit">註冊</button>
       <a class="record-button" href="">Facebook註冊</a>
