@@ -27,7 +27,17 @@ router.put('/:id' , (req , res) => {
 
 //get /records/new
 router.get('/new' , (req , res) => {
-  res.render('new')
+
+  const today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  let yyyy = today.getFullYear();
+  let showDate = '';
+  if (dd < 10) { dd = `0${dd}` }
+  if (mm < 10) { mm = `0${mm}` }
+  showDate = `${yyyy}-${mm}-${dd}`
+
+  res.render('new' , { today : showDate })
 })
 
 //post /records
@@ -54,8 +64,6 @@ router.get('/:id/edit' , (req , res) => {
   const _id = req.params.id;
   const userId = req.user.id;
   let { one_selected , two_selected , three_selected , four_selected , five_selected } = '';
-
-  //誰selected?
 
   return Record.findOne({ userId , _id })
         .lean()
