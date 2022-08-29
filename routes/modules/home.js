@@ -1,6 +1,7 @@
 const express = require('express');
 const passport = require('passport')
 
+const getFormattedDate = require('../../public/scripts/function');
 const router = express.Router();
 const Record = require('../../models/record');
 const categoryIcon = require('../../public/scripts/categoryIcon');
@@ -16,7 +17,6 @@ router.get('/' , (req , res) => {
   Record.find({ userId })
         .lean()
         .then(records => {
-          
           let newRecordsArr = []
           records.forEach(record => {
             const iconObj = { 'icon' : Object.values(categoryIcon[record.categoryId-1])[0] }
@@ -29,12 +29,12 @@ router.get('/' , (req , res) => {
           return newRecordsArr;
         })
         .then(newRecordsArr => {
-          console.log(newRecordsArr.date)
+          newRecordsArr.forEach(record => {
+            record.date = getFormattedDate(record.date)
+          })
           return res.render('index' , { records : newRecordsArr , totalAmount })
         })
         .catch(err => console.log(err))
 })
-
-//get category
 
 module.exports = router;

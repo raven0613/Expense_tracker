@@ -1,10 +1,10 @@
 const express = require('express')
 
 const Record = require('../../models/record');
-const User = require('../../models/user');
+const getFormattedDate = require('../../public/scripts/function');
 const router = express.Router();
 
-
+let currentCategory = 0;
 
 //put /records/id
 router.put('/:id' , (req , res) => {
@@ -28,16 +28,7 @@ router.put('/:id' , (req , res) => {
 //get /records/new
 router.get('/new' , (req , res) => {
 
-  const today = new Date();
-  let dd = today.getDate();
-  let mm = today.getMonth() + 1;
-  let yyyy = today.getFullYear();
-  let showDate = '';
-  if (dd < 10) { dd = `0${dd}` }
-  if (mm < 10) { mm = `0${mm}` }
-  showDate = `${yyyy}-${mm}-${dd}`
-
-  res.render('new' , { today : showDate })
+  res.render('new' , { today : getFormattedDate() })
 })
 
 //post /records
@@ -65,6 +56,8 @@ router.get('/:id/edit' , (req , res) => {
   const userId = req.user.id;
   let { one_selected , two_selected , three_selected , four_selected , five_selected } = '';
 
+
+  
   return Record.findOne({ userId , _id })
         .lean()
         .then(records => {
@@ -73,7 +66,7 @@ router.get('/:id/edit' , (req , res) => {
           if (records.categoryId === 3) { three_selected = 'selected';}
           if (records.categoryId === 4) { four_selected = 'selected';}
           if (records.categoryId === 5) { five_selected = 'selected';}
-          return res.render('edit' , { records , one_selected , two_selected , three_selected , four_selected , five_selected })
+          return res.render('edit' , { records , date : getFormattedDate (records.date) , one_selected , two_selected , three_selected , four_selected , five_selected })
         })
         .catch(err => console.log(err))
 })

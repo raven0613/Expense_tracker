@@ -91,7 +91,7 @@ body, html {
 
 .nav__header {
   width: 100%;
-  background: #e6e6e6;
+  background: #ebebeb;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 2rem auto 10fr auto 2rem;
@@ -178,8 +178,11 @@ body, html {
   height: 34rem;
 }
 
+.bottom__records .bottom__records--item:nth-child(odd) {
+  background-color: #ebebeb;
+}
+
 .bottom__records--item {
-  background-color: #e6e6e6;
   position: relative;
   display: -ms-grid;
   display: grid;

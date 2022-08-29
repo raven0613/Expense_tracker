@@ -1,7 +1,7 @@
 const express = require('express')
 
 const Record = require('../../models/record');
-const User = require('../../models/user');
+const getFormattedDate = require('../../public/scripts/function');
 const router = express.Router();
 const categoryIcon = require('../../public/scripts/categoryIcon');
 
@@ -34,6 +34,9 @@ router.get('/:id' , (req , res) => {
     return newRecordsArr;
   })
   .then(newRecordsArr => {
+    newRecordsArr.forEach(record => {
+      record.date = getFormattedDate(record.date)
+    })
     return res.render('index' , { records : newRecordsArr , totalAmount , one_selected , two_selected , three_selected , four_selected , five_selected })
   })
   .catch(err => console.log(err))
