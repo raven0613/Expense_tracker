@@ -1,21 +1,37 @@
 <div class="container">
   <form action="/records/{{ records._id }}?_method=PUT" method="POST">
-    <p>請修改你的支出</p>
-    <label for="record-name" class="record-name-label">名稱*</label>
-    <input type="text" name="name" id="record-name" class="record-name" value="{{ records.name }}" required> 
-    <label for="record-name" class="record-date-label">日期*</label>
-    <input type="date" name="date" id="record-date" class="record-date" value="{{ records.date }}" required> 
-    <label for="record-category" class="record-date-label">類別*</label>
-    <select name="category" id="record-category" class="record-date" required>
-      <option class="record-category-option" value="">select</option>
-      <option class="record-category-option" value="1">家居物業</option>
-      <option class="record-category-option" value="2">交通出行</option>
-      <option class="record-category-option" value="3">休閒娛樂</option>
-      <option class="record-category-option" value="4">餐飲食品</option>
-      <option class="record-category-option" value="5">其他</option>
-    </select>
-    <label for="record-amount" class="record-amount-label">金額*</label>
-    <input type="number" name="amount" id="record-amount" class="record-amount" value="{{ records.amount }}" required inputmode="numeric"> 
-    <button type="submit">送出</button>
+
+    <div class="left-area">
+      
+      <p class="required-description">*必填欄位</p>
+      <label for="record-name" class="record-name-label">名稱*</label>
+
+      <label for="record-name" class="record-date-label">日期*</label>
+
+      <label for="record-category" class="record-date-label">類別*</label>
+
+      <label for="record-amount" class="record-amount-label">金額*</label>
+    </div>
+
+    <div class="main-area">
+      <p class="title">請修改你的支出</p>
+      <input type="text" name="name" id="record-name" class="record-name" value="{{ records.name }}" required> 
+
+      <input type="date" name="date" id="record-date" class="record-date" value="{{ records.date }}" required> 
+
+      <select name="category" id="record-category" class="record-date" required>
+        <option class="record-category-option" value="">select</option>
+        <option class="record-category-option" value="1">家居物業</option>
+        <option class="record-category-option" value="2">交通出行</option>
+        <option class="record-category-option" value="3">休閒娛樂</option>
+        <option class="record-category-option" value="4">餐飲食品</option>
+        <option class="record-category-option" value="5">其他</option>
+      </select>
+
+      <input type="number" name="amount" id="record-amount" class="record-amount" value="{{ records.amount }}" required inputmode="numeric"> 
+
+      <button class="record-button" type="submit">送出</button>
+    </div>
+
   </form>
 </div>

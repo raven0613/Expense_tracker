@@ -1,20 +1,31 @@
 <div class="container">
   <form action="/users/register" method="POST">
-    <p>註冊</p>
-    <label for="user-name" class="user-name-label">名稱*</label>
-    <input type="text" name="name" id="user-name" class="user-name" value="{{ users.name }}" required> 
 
-    <label for="user-email" class="user-email-label">email*</label>
-    <input type="text" name="email" id="user-email" class="user-email" value="{{ users.email }}" required>
+    <div class="left-area">
+      <p class="required-description">*必填欄位</p>
+      <label for="user-name" class="user-name-label">名稱*</label>
 
-    <label for="user-password" class="user-password-label">密碼*</label>
-    <input type="password" name="password" id="user-password" class="user-password" value="{{ users.password }}" required>
+      <label for="user-email" class="user-email-label">email*</label>
 
-    <label for="user-confirmedPassword" class="user-confirmedPassword-label">確認密碼*</label>
-    <input type="password" name="confirmedPassword" id="user-confirmedPassword" class="user-confirmedPassword" value="{{ users.confirmedPassword }}" required>
+      <label for="user-password" class="user-password-label">密碼*</label>
 
-    <button type="submit">註冊</button>
-    <a href="">Facebook註冊</a>
-    已有帳號? <a href="/users/login">登入</a>
+      <label for="user-confirmedPassword" class="user-confirmedPassword-label">確認密碼*</label>
+    </div>
+
+    <div class="main-area">
+      <p class="title">註冊</p>
+      <input type="text" name="name" id="user-name" class="user-name" value="{{ users.name }}" required> 
+
+      <input type="text" name="email" id="user-email" class="user-email" value="{{ users.email }}" required>
+
+      <input type="password" name="password" id="user-password" class="user-password" value="{{ users.password }}" required>
+
+      <input type="password" name="confirmedPassword" id="user-confirmedPassword" class="user-confirmedPassword" value="{{ users.confirmedPassword }}" required>
+
+      <button class="record-button" type="submit">註冊</button>
+      <a class="record-button" href="">Facebook註冊</a>
+      <span>已有帳號? <a href="/users/login">登入</a></span>
+    </div>
+
   </form>
 </div>

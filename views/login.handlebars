@@ -1,13 +1,24 @@
 <div class="container">
   <form action="/users/login" method="POST">
-    <p>登入</p>
-    <label for="user-email" class="user-email-label">email*</label>
-    <input type="text" name="email" id="user-email" class="user-email" value="{{ users.email }}" required>
-    <label for="user-password" class="user-password-label">密碼*</label>
-    <input type="password" name="password" id="user-password" class="user-password" value="{{ users.password }}" required>
 
-    <button type="submit">登入</button>
-    <a href="/auth/facebook">Facebook登入</a>
-    沒有帳號? <a href="/users/register">註冊</a>
+    <div class="left-area">
+      <p class="required-description">*必填欄位</p>
+      <label for="user-email" class="user-email-label">email*</label>
+
+      <label for="user-password" class="user-password-label">密碼*</label>
+
+    </div>
+
+    <div class="main-area">
+      <p class="title">登入</p>
+      <input type="text" name="email" id="user-email" class="user-email" value="{{ users.email }}" required>
+
+      <input type="password" name="password" id="user-password" class="user-password" value="{{ users.password }}" required>
+
+      <button class="record-button" type="submit">登入</button>
+      <a class="record-button" href="/auth/facebook">Facebook登入</a>
+
+      <span>沒有帳號? <a href="/users/register">註冊</a></span>
+    </div>
   </form>
 </div>
