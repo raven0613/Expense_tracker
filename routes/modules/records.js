@@ -53,11 +53,19 @@ router.post('/' , (req , res) => {
 router.get('/:id/edit' , (req , res) => {
   const _id = req.params.id;
   const userId = req.user.id;
+  let { one_selected , two_selected , three_selected , four_selected , five_selected } = '';
+
   //誰selected?
+
   return Record.findOne({ userId , _id })
         .lean()
         .then(records => {
-          return res.render('edit' , { records })
+          if (records.categoryId === 1) { one_selected = 'selected';}
+          if (records.categoryId === 2) { two_selected = 'selected';}
+          if (records.categoryId === 3) { three_selected = 'selected';}
+          if (records.categoryId === 4) { four_selected = 'selected';}
+          if (records.categoryId === 5) { five_selected = 'selected';}
+          return res.render('edit' , { records , one_selected , two_selected , three_selected , four_selected , five_selected })
         })
         .catch(err => console.log(err))
 })
