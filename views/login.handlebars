@@ -4,16 +4,19 @@
     
     <div class="left-area">
       <p class="required-description">*必填欄位</p>
-      <label for="user-email" class="user-email-label">email* : </label>
+      <label for="user-email" class="user-label">email* : </label>
 
-      <label for="user-password" class="user-password-label">密碼* : </label>
+      <label for="user-password" class="user-label">密碼* : </label>
 
     </div>
 
     <div class="main-area">
       <p class="title">登入</p>
+      <label for="user-email" class="user-label-main">email* : </label>
       <input type="text" name="email" id="user-email" class="user-email" value="{{ users.email }}" placeholder="user@example.com" required>
       <div class="warning"> {{{ password_warning }}} </div>
+
+      <label for="user-password" class="user-label-main">密碼* : </label>
       <input type="password" name="password" id="user-password" class="user-password" placeholder="password" required>
       <div class="warning"> {{{ password_warning }}} </div>
       <button class="record-button" type="submit">登入</button>

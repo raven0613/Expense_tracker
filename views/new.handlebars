@@ -3,23 +3,27 @@
     
     <div class="left-area">
       <p class="required-description">*必填欄位</p>
-      <label for="record-name" class="record-name-label">名稱*：</label>
+      <label for="record-name" class="record-label">名稱* : </label>
       
-      <label for="record-name" class="record-date-label">日期*：</label>
+      <label for="record-name" class="record-label">日期* : </label>
       
-      <label for="record-category" class="record-date-label">類別*：</label>
+      <label for="record-category" class="record-label">類別* : </label>
 
-      <label for="record-amount" class="record-amount-label">金額*：</label>
+      <label for="record-amount" class="record-label">金額* : </label>
     </div>
 
     <div class="main-area">
       <p class="title">請輸入你的支出</p>
+
+      <label for="record-name" class="record-label-main">名稱* : </label>
       <input type="text" name="name" id="record-name" placeholder="支出名稱" class="record-name" required> 
       <div class="warning"> </div>
 
+      <label for="record-name" class="record-label-main">日期* : </label>
       <input type="date" name="date" id="record-date" class="record-date" value="{{ today }}" required> 
       <div class="warning"> </div>
       
+      <label for="record-category" class="record-label-main">類別* : </label>
       <select name="category" id="record-category" class="record-date" required>
         <option class="record-category-option" value="">select</option>
         <option class="record-category-option" value="1">家居物業</option>
@@ -30,9 +34,10 @@
       </select>
       <div class="warning"> </div>
 
+      <label for="record-amount" class="record-label-main">金額* : </label>
       <input type="number" name="amount" placeholder="支出金額" id="record-amount" class="record-amount" required inputmode="numeric"> 
       <div class="warning"> </div>
-      
+
       <button class="record-button" type="submit">新增支出</button>
     </div>
     

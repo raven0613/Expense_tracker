@@ -3,26 +3,31 @@
 
     <div class="left-area">
       <p class="required-description">*必填欄位</p>
-      <label for="user-name" class="user-name-label">名稱* : </label>
+      <label for="user-name" class="user-label">名稱* : </label>
 
-      <label for="user-email" class="user-email-label">email* : </label>
+      <label for="user-email" class="user-label">email* : </label>
 
-      <label for="user-password" class="user-password-label">密碼* : </label>
+      <label for="user-password" class="user-label">密碼* : </label>
 
-      <label for="user-confirmedPassword" class="user-confirmedPassword-label">確認密碼* : </label>
+      <label for="user-confirmedPassword" class="user-label">確認密碼* : </label>
     </div>
 
     <div class="main-area">
       <p class="title">註冊</p>
+
+      <label for="user-name" class="user-label-main">名稱* : </label>
       <input type="text" name="name" id="user-name" class="user-name" value="{{ name }}" placeholder="name" required> 
       <div class="warning"> </div>
 
+      <label for="user-email" class="user-label-main">email* : </label>
       <input type="text" name="email" id="user-email" class="user-email" value="{{ email }}" placeholder="user@example.com" required>
       <div class="warning"> {{{ email_warning }}}</div>
 
+      <label for="user-password" class="user-label-main">密碼* : </label>
       <input type="password" name="password" id="user-password" class="user-password" placeholder="password" required>
       <div class="warning"> {{{ password_warning }}} </div>
 
+      <label for="user-confirmedPassword" class="user-label-main">確認密碼* : </label>
       <input type="password" name="confirmedPassword" id="user-confirmedPassword" class="user-confirmedPassword" placeholder="password" required>
       <div class="warning"> </div>
 

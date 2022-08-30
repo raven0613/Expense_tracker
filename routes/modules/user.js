@@ -30,7 +30,7 @@ router.post('/register' , (req , res) => {
   let email_warning = '';
 
   function getWarning (warning) {
-    return  `<div class="alert alert-dismissible fade show" role="alert">
+    return  `<div class="alert alert-danger alert-dismissible fade show" role="alert">
     <p>${warning}</p> 
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>`

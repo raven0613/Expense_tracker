@@ -93,15 +93,19 @@ $blue: #63d5e4;
 body , html {
   height: 100%;
 }
-a {
+a , button {
   color: $black;
+  &:hover {
+    color: $orange;
+    border-color: $orange;
+  }
 }
 
 .nav__header {
   width: 100%;
   background: $light-gray;
   display: grid;
-  grid-template-columns: 2rem auto 10fr auto 2rem;
+  grid-template-columns: 2rem auto 10fr auto 1rem;
   grid-template-rows: 3.5rem;
   grid-template-areas: ". logo . login-logout .";
   line-height: 3.5rem;
@@ -130,8 +134,13 @@ a {
 
 .container {
   width: 95%;
-  margin: 3rem auto;
+  margin: 1rem auto;
   padding: 0;
+}
+.top__success {
+  width: 100%;
+  height: 4.5rem;
+  padding: 0.5rem 0;
 }
 
 .top__selector {
@@ -279,8 +288,8 @@ i {
 .form {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  grid-template-areas: "left main .";
+  grid-template-columns: 100%;
+  grid-template-areas: "main";
   grid-gap: 0.5rem;
 }
 
@@ -295,16 +304,15 @@ input , .category-selector {
   padding-left: 0.5rem;
   width: 100%;
 }
-label {
-  margin-bottom: 2rem;
-}
+
 .warning {
   margin: auto;
-  width: 15rem;
+  width: 100%;
   height: 2rem;
   line-height: 1.5rem;
   vertical-align: top;
   color: red;
+  padding: 0 0 0.2rem 0;
 }
 .input-error {
   border: red 1px solid;
@@ -368,6 +376,9 @@ label {
 }
 .alert-dismissible {
   padding: 0;
+  .btn-close {
+    padding: 0;
+  }
 }
 .btn-close {
   line-height: 0;
@@ -375,11 +386,11 @@ label {
   width: 100%;
   height: 100%;
   padding: 0;
-  background: $orange;
   border: none;
   border-radius: 2px;
   opacity: 0.2;
   color: $black;
+  background: none;
 }
 
 .btn-close:hover {
@@ -399,14 +410,39 @@ label {
 }
 
 @media screen and (min-width:520px) {
+  .nav__header {
+    width: 100%;
+    background: $light-gray;
+    display: grid;
+    grid-template-columns: 2rem auto 10fr auto 2rem;
+    grid-template-rows: 3.5rem;
+    grid-template-areas: ". logo . login-logout .";
+    line-height: 3.5rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
   .nav__header--login,
   .nav__header--logout {
     width: 6rem;
+  }
+  .form {
+    grid-template-columns: 1fr 12rem 1fr;
+    grid-template-areas: "left main .";
+    grid-gap: 2rem
+  }
+  .user-label-main , .record-label-main {
+    display: none;
+    margin: 0;
+  }
+  .user-label , .record-label {
+    margin-bottom: 2rem;
   }
 }
 
 @media screen and (min-width:960px) {
 
+  
   .middle__total {
     width: 100%;
     height: 5rem;
@@ -484,12 +520,6 @@ label {
       width: 5rem;
       height: 5rem;
     }
-  }
-
-
-
-  form {
-    grid-gap: 2rem
   }
   input , select {
     width: 15rem
