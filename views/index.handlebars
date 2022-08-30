@@ -1,59 +1,61 @@
-
-<div class="container">
-  <div class="top__success">{{> message}}</div>  
-  <div class="top__selector">
-    <label for="category-selector" class="category-selector-label">
-      <select name="category" id="category-selector" class="category-selector" onchange="window.location.href=this.value;">
-        <option class="category-selector-option" value="/">類別</option>
-        <option class="category-selector-option" value="/category/1" {{one_selected}}>家居物業</option>
-        <option class="category-selector-option" value="/category/2" {{two_selected}}>交通出行</option>
-        <option class="category-selector-option" value="/category/3" {{three_selected}}>休閒娛樂</option>
-        <option class="category-selector-option" value="/category/4" {{four_selected}}>餐飲食品</option>
-        <option class="category-selector-option" value="/category/5" {{five_selected}}>其他</option>
-      </select>
-    </label>
-
-  </div>
-
-  <div class="middle__total">
-    <p>總金額：</p>
-    <span>{{ totalAmount }}</span>
-  </div>
-
-  
-  <div class="bottom__records">
-    {{#each records}}
-    <div class="bottom__records--item">
-
-      <div class="bottom__item--img">
-        {{{ this.icon }}}
-      </div>
-      <div class="bottom__item--name">
-        <p>{{ this.name }}</p>
-        <span>{{ this.date }}</span>
-      </div>
-      <span class="bottom__item--price">{{ this.amount }}</span>
-
-
-      <div class="bottom__item--controller">
-
-        <a class="bottom__item--controlbtn" href="/records/{{ this._id }}/edit">修改</a>
-
-        <form action="/records/{{ this._id }}?_method=DELETE" method="POST">
-          <button class="bottom__item--controlbtn" type="submit">刪除</button>
-        </form>
-      </div>
+<div class="outer">
+  <div class="container">
+    <div class="top__success">{{> message}}</div>  
+    <div class="top__selector">
+      <label for="category-selector" class="category-selector-label">
+        <select name="category" id="category-selector" class="category-selector" onchange="window.location.href=this.value;">
+          <option class="category-selector-option" value="/">類別</option>
+          <option class="category-selector-option" value="/category/1" {{one_selected}}>家居物業</option>
+          <option class="category-selector-option" value="/category/2" {{two_selected}}>交通出行</option>
+          <option class="category-selector-option" value="/category/3" {{three_selected}}>休閒娛樂</option>
+          <option class="category-selector-option" value="/category/4" {{four_selected}}>餐飲食品</option>
+          <option class="category-selector-option" value="/category/5" {{five_selected}}>其他</option>
+        </select>
+      </label>
 
     </div>
-    {{/each}}
-  </div>
-  
 
-  <a class="bottom__addbtn" href="/records/new">
-    <div class="bottom__add">
-      新增支出
+    <div class="middle__total">
+      <p>總金額：</p>
+      <span>{{ totalAmount }}</span>
     </div>
-  </a>
 
-  
+    
+    <div class="bottom__records">
+      {{#each records}}
+      <div class="bottom__records--item">
+
+        <div class="bottom__item--img">
+          {{{ this.icon }}}
+        </div>
+        <div class="bottom__item--name">
+          <p>{{ this.name }}</p>
+          <span>{{ this.date }}</span>
+        </div>
+        <span class="bottom__item--price">{{ this.amount }}</span>
+
+
+        <div class="bottom__item--controller">
+
+          <a class="bottom__item--controlbtn" href="/records/{{ this._id }}/edit">修改</a>
+
+          <form action="/records/{{ this._id }}?_method=DELETE" method="POST">
+            <button class="bottom__item--controlbtn" type="submit">刪除</button>
+          </form>
+        </div>
+
+      </div>
+      {{/each}}
+    </div>
+    
+
+    <a class="bottom__addbtn" href="/records/new">
+      <div class="bottom__add">
+        新增支出
+      </div>
+    </a>
+
+    
+  </div>
 </div>
+

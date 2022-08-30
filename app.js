@@ -9,13 +9,15 @@ if (process.env.NODE_ENV !== 'profuction') {
 
 const app = express();
 const exphdb = require('express-handlebars');
+const Handlebars = require('handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const methodOverride = require('method-override');
 const PORT = process.env.PORT;
 const routes = require('./routes');
 require('./config/mongoose');
 
 
-app.engine('handlebars' , exphdb.engine({ defaultLayout : 'main' }));
+app.engine('handlebars' , exphdb.engine({ defaultLayout : 'main' , handlebars : allowInsecurePrototypeAccess(Handlebars) }));
 app.set('view engine' , 'handlebars');
 
 app.use(flash());

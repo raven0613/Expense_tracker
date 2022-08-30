@@ -72,6 +72,15 @@ input:invalid {
   box-shadow: none;
 }
 
+
+
+// colors
+$white: #f7f7f7;
+$light-gray: #ebebeb;
+$black: #252121;
+$orange: #e4551d;
+$blue: #63d5e4;
+
 //scroll bar
 ::-webkit-scrollbar {
   width: 6px;
@@ -80,15 +89,8 @@ input:invalid {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 3px;
-  background-color: #e4551d;
+  background-color: $orange;
 }
-
-// colors
-$white: #f7f7f7;
-$light-gray: #ebebeb;
-$black: #252121;
-$orange: #e4551d;
-$blue: #63d5e4;
 
 body , html {
   height: 100%;
@@ -130,7 +132,12 @@ a , button {
   
 }
 
-
+.outer {
+  width: 100%;
+  height: 85%;
+  overflow-y: scroll;
+  padding-left: 6px;
+}
 
 .container {
   width: 95%;
@@ -152,6 +159,7 @@ a , button {
   height: 3.5rem;
   font-size: 1rem;
   padding-left: 0.5rem;
+  cursor: pointer;
 }
 .category-selector-option {
   font-size: 1rem;
@@ -164,7 +172,7 @@ a , button {
   display: flex;
   color: $black;
 
-  padding: 0 1rem;
+  padding: 0.5rem 1rem 0 1rem;
   margin: 1rem auto;
   p { font-size: 1rem; }
   span {
@@ -202,13 +210,16 @@ a , button {
   }
   .bottom__item--name {
     width: 100%;
-    overflow: scroll;
+    // overflow: scroll;
     grid-area: name;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 0.5rem;
-    p { font-size: 1.5rem; }
+    p { 
+      font-size: 1.5rem; 
+      word-break: break-all;
+    }
   }
   .bottom__item--price {
     grid-area: price;
@@ -280,6 +291,7 @@ i {
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
+
 }
 
 
@@ -356,6 +368,13 @@ input , .category-selector {
   margin-bottom: 1rem;
 }
 
+.director {
+  font-weight: 700;
+  border-radius: 5px;
+  border: $black solid 1px;
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+}
 
 //bootstrap settings
 .alert {
@@ -426,6 +445,7 @@ input , .category-selector {
   .nav__header--logout {
     width: 6rem;
   }
+
   .form {
     grid-template-columns: 1fr 12rem 1fr;
     grid-template-areas: "left main .";
@@ -449,7 +469,7 @@ input , .category-selector {
     display: flex;
     color: $black;
 
-    padding: 0 1rem;
+    padding: 0.5rem 1rem 0 1rem;
     margin: 1rem auto;
 
     p {
