@@ -25,7 +25,7 @@
 <li>下載express.js</li>
 <div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="npm install express"><pre class="notranslate"><code>npm install express
 </code></pre></div>
-<li>參考.env.example建立.evn檔案，並填入所需資訊</li>
+<li>參考.env.example建立.env檔案，並填入所需資訊</li>
 <div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="touch .env"><pre class="notranslate"><code>touch .env
 </code></pre></div>
 <li>啟動專案</li>
