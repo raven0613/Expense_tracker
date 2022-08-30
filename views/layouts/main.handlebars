@@ -6,13 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>家庭記帳本</title>
 
+  <link rel="stylesheet" href="/styles/bootstrap.css">
   <link rel="stylesheet" 
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
   <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
   <nav class="nav__header">
-    <a class="nav__header--logo" href="/">{{#if isAuthenticated}}{{user.id}}{{else}}我{{/if}}的家庭記帳本</a>
+
+    <a class="nav__header--logo" href="/">{{#if isAuthenticated}} {{user.name}}的{{/if}}家庭記帳本</a>
+
     {{#if isAuthenticated}}
     <a class="nav__header--logout" href="/users/logout">登出</a>
     {{else}}
@@ -22,5 +25,6 @@
 
   {{{ body }}}
 
+  <script src="/scripts/bootstrap.js"></script>
 </body>
 </html>

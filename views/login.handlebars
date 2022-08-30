@@ -1,20 +1,21 @@
 <div class="container">
+  <div class="warning">{{> message}}</div>
   <form class="form" action="/users/login" method="POST">
-
+    
     <div class="left-area">
       <p class="required-description">*必填欄位</p>
-      <label for="user-email" class="user-email-label">email*</label>
+      <label for="user-email" class="user-email-label">email* : </label>
 
-      <label for="user-password" class="user-password-label">密碼*</label>
+      <label for="user-password" class="user-password-label">密碼* : </label>
 
     </div>
 
     <div class="main-area">
       <p class="title">登入</p>
       <input type="text" name="email" id="user-email" class="user-email" value="{{ users.email }}" placeholder="user@example.com" required>
-
-      <input type="password" name="password" id="user-password" class="user-password" value="{{ users.password }}" placeholder="password" required>
-
+      <div class="warning"> {{{ password_warning }}} </div>
+      <input type="password" name="password" id="user-password" class="user-password" placeholder="password" required>
+      <div class="warning"> {{{ password_warning }}} </div>
       <button class="record-button" type="submit">登入</button>
       <a class="record-button" href="/auth/facebook">Facebook登入</a>
 

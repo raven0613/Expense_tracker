@@ -17,18 +17,18 @@ module.exports = (app) => {
     User.findOne({ email })
     .then(user => {
       if (!user) {
-        console.log('email或密碼不正確1')
+        req.flash('warning_msg' , 'email 或 密碼不正確');
         return done(null , false)
       }
 
       return bcrypt.compare(password , user.password)
       .then(isMatched => {
         if (!isMatched) {
-          console.log('email或密碼不正確2')
+          req.flash('warning_msg' , 'email 或 密碼不正確');
           return done(null , false)
         }
         if (isMatched) {
-          console.log('登入成功')
+          req.flash('success_msg' , '登入成功');
           return done(null , user)
         }
       })
