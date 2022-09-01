@@ -5,7 +5,6 @@ const Record = require('../record');
 
 
 
-
 const seedRecords = [
   { 'name' : '午餐' , 'amount': 60 , 'categoryId' : 4 },
   { 'name' : '晚餐' , 'amount': 60 , 'categoryId' : 4 },
@@ -25,7 +24,7 @@ function createRecord (data , user , recordQuantity){
   return Promise.all(Array.from(
     { length: data.length } , (_value , i) => {
       return Record.create({
-        id: recordQuantity + i +1,
+        id: recordQuantity + i + 1,
         name: data[i].name,
         amount: data[i].amount,
         userId: user.id,
@@ -41,6 +40,7 @@ db.once('open' , () => {
   User
   .findOne({ email : seedUser.email })
   .then(user => {
+    //如果user不存在就創一個user再創花費
     if (!user){
       return bcrypt
       .genSalt(10)
@@ -52,30 +52,30 @@ db.once('open' , () => {
         password: hash,
       }))
       .then(user => {
-
-        return Record.find()
+        return Record
+        .find().sort({id:-1}).limit(1)
         .then(record => {
-          console.log(record.length)
-          return record.length;
-        })
-        .then(quantity => {
-          return createRecord (seedRecords , user , quantity)
+          if (record.length) {
+            return createRecord (seedRecords , user , record[0].id)
+          }
+          return createRecord (seedRecords , user , 0)
         })
         .catch(err => console.log(err))
       })
       .catch(err => console.log(err))
     }
+    //如果user存在就直接創花費
     if (user) {
       
-      return Record.find()
+      return Record
+      .find().sort({id:-1}).limit(1)
       .then(record => {
-        return record.length;
-      })
-      .then(quantity => {
-        return createRecord (seedRecords , user , quantity)
+        if (record.length) {
+          return createRecord (seedRecords , user , record[0].id)
+        }
+        return createRecord (seedRecords , user , 0)
       })
       .catch(err => console.log(err))
- 
     }
   })
   .then(() => {

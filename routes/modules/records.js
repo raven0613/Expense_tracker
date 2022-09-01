@@ -4,7 +4,6 @@ const Record = require('../../models/record');
 const getFormattedDate = require('../../public/scripts/function');
 const router = express.Router();
 
-let currentCategory = 0;
 
 //put /records/id
 router.put('/:id' , (req , res) => {
@@ -20,7 +19,12 @@ router.put('/:id' , (req , res) => {
           records.amount = amount;
           return records.save();
         })
-        .then(() => res.redirect('/'))
+        .then(() => {
+          if (global.currentCategory > 0) {
+            return res.redirect(`/category/${global.currentCategory}`)
+          }
+          return res.redirect('/')
+        })
         .catch(err => console.log(err))
 
 })
@@ -36,14 +40,15 @@ router.post('/' , (req , res) => {
   const {name , date , category , amount} = req.body;
   const userId = req.user.id;
 
-  Record.find()
+  Record.find().sort({id:-1}).limit(1)
   .then(record => {
-    return record.length;
-  })
-  .then(quantity => {
-    return Record.create({
-      id : quantity + 1 , name , date , amount , userId , categoryId : category
+    if(record.length)
+      return Record.create({
+      id : record[0].id + 1 , name , date , amount , userId , categoryId : category
     })
+      return Record.create({
+        id : 1 , name , date , amount , userId , categoryId : category
+      })
   })
   .then(() => res.redirect('/'))
   .catch(err => console.log(err))
@@ -57,7 +62,6 @@ router.get('/:id/edit' , (req , res) => {
   let { one_selected , two_selected , three_selected , four_selected , five_selected } = '';
 
 
-  
   return Record.findOne({ userId , _id })
         .lean()
         .then(records => {
@@ -82,7 +86,12 @@ router.delete('/:id' , (req , res) => {
         .then(records => {
           return records.delete();
         })
-        .then(() => res.redirect('/'))
+        .then(() => {
+          if (global.currentCategory > 0) {
+            return res.redirect(`/category/${global.currentCategory}`)
+          }
+          return res.redirect('/')
+        })
         .catch(err => console.log(err))
 })
 
