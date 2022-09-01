@@ -3,6 +3,8 @@ const session = require('express-session');
 const usePassport = require('./config/passport');
 const flash = require('connect-flash');
 
+let currentCategory = 0;
+
 if (process.env.NODE_ENV !== 'profuction') {
   require('dotenv').config();
 }
@@ -37,7 +39,6 @@ app.use((req , res , next) => {
   res.locals.warning_msg = req.flash('warning_msg')
   next();
 })
-
 
 app.use(express.urlencoded({ extended : true }));
 app.use(methodOverride('_method'));

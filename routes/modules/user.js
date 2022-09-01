@@ -6,7 +6,6 @@ const User = require('../../models/user');
 
 
 
-
 //get /users/login
 router.get('/login' , (req , res) => {
   if (req.isAuthenticated()) {
@@ -41,7 +40,6 @@ router.post('/register' , (req , res) => {
     password_warning = getWarning('密碼與確認密碼不符');
   }
 
-  
   User.findOne({ email })
     .then(user => {
       if (!user){
@@ -75,7 +73,6 @@ router.post('/login' , passport.authenticate('local' , {
   failureRedirect : '/users/login', 
   successRedirect : '/'
 }))
-
 
 
 //get /users/logout

@@ -1,5 +1,4 @@
 const express = require('express');
-const passport = require('passport')
 
 const getFormattedDate = require('../../public/scripts/function');
 const router = express.Router();
@@ -7,12 +6,10 @@ const Record = require('../../models/record');
 const categoryIcon = require('../../public/scripts/categoryIcon');
 
 
-//格式化的時間
-
 router.get('/' , (req , res) => {
   const userId = req.user.id;
   let totalAmount = 0;
-
+  global.currentCategory = 0;
 
   Record.find({ userId })
         .lean()

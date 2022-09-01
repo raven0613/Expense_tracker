@@ -9,6 +9,8 @@ const categoryIcon = require('../../public/scripts/categoryIcon');
 router.get('/:id' , (req , res) => {
   const userId = req.user.id;
   const categoryId = req.params.id;
+  global.currentCategory = categoryId;
+
   let totalAmount = 0;
   let { one_selected , two_selected , three_selected , four_selected , five_selected } = '';
   

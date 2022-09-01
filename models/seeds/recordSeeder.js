@@ -4,7 +4,6 @@ const User = require('../user')
 const Record = require('../record');
 
 
-
 const seedRecords = [
   { 'name' : '午餐' , 'amount': 60 , 'categoryId' : 4 },
   { 'name' : '晚餐' , 'amount': 60 , 'categoryId' : 4 },
