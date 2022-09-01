@@ -119,6 +119,8 @@ a:hover, button:hover {
   -ms-grid-column: 2;
   grid-area: logo;
   color: #252121;
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
 }
 
 .nav__header--login, .nav__header--logout {
@@ -133,6 +135,8 @@ a:hover, button:hover {
   border: solid 2px #252121;
   border-radius: 5px;
   color: #e4551d;
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
 }
 
 .outer {
@@ -307,6 +311,9 @@ a:hover, button:hover {
   text-align: center;
   color: #252121;
   font-size: 1.2rem;
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+  font-weight: 600;
 }
 
 i {
@@ -344,6 +351,13 @@ i::before {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+}
+
+.bottom__add:hover {
+  -webkit-filter: brightness(1.1);
+          filter: brightness(1.1);
 }
 
 .form {
@@ -436,6 +450,8 @@ input, .category-selector {
   font-size: 1rem;
   text-align: center;
   margin-bottom: 1rem;
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
 }
 
 .director {
@@ -444,6 +460,8 @@ input, .category-selector {
   border: #252121 solid 1px;
   padding: 0.5rem 1rem;
   margin-left: 0.5rem;
+  -webkit-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
 }
 
 .alert {
