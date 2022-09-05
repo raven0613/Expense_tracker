@@ -3,7 +3,7 @@ const express = require('express')
 const Record = require('../../models/record');
 const getFormattedDate = require('../../public/scripts/function');
 const router = express.Router();
-
+let {categoryList} = require('../../public/scripts/categoryData');
 
 //put /records/id
 router.put('/:id' , (req , res) => {
@@ -20,8 +20,10 @@ router.put('/:id' , (req , res) => {
           return records.save();
         })
         .then(() => {
-          if (global.currentCategory > 0) {
-            return res.redirect(`/category/${global.currentCategory}`)
+          let {currentCategory} = require('../../public/scripts/categoryData');
+
+          if (currentCategory > 0) {
+            return res.redirect(`/category/${currentCategory}`)
           }
           return res.redirect('/')
         })
@@ -32,7 +34,7 @@ router.put('/:id' , (req , res) => {
 //get /records/new
 router.get('/new' , (req , res) => {
 
-  res.render('new' , { today : getFormattedDate() })
+  res.render('new' , { today : getFormattedDate() , category : categoryList })
 })
 
 //post /records
@@ -59,18 +61,13 @@ router.post('/' , (req , res) => {
 router.get('/:id/edit' , (req , res) => {
   const _id = req.params.id;
   const userId = req.user.id;
-  let { one_selected , two_selected , three_selected , four_selected , five_selected } = '';
 
 
   return Record.findOne({ userId , _id })
         .lean()
         .then(records => {
-          if (records.categoryId === 1) { one_selected = 'selected';}
-          if (records.categoryId === 2) { two_selected = 'selected';}
-          if (records.categoryId === 3) { three_selected = 'selected';}
-          if (records.categoryId === 4) { four_selected = 'selected';}
-          if (records.categoryId === 5) { five_selected = 'selected';}
-          return res.render('edit' , { records , date : getFormattedDate (records.date) , one_selected , two_selected , three_selected , four_selected , five_selected })
+          categoryList[records.categoryId - 1].selected = 'selected';
+          return res.render('edit' , { records , date : getFormattedDate (records.date) , category : categoryList })
         })
         .catch(err => console.log(err))
 })
@@ -87,8 +84,10 @@ router.delete('/:id' , (req , res) => {
           return records.delete();
         })
         .then(() => {
-          if (global.currentCategory > 0) {
-            return res.redirect(`/category/${global.currentCategory}`)
+          let {currentCategory} = require('../../public/scripts/categoryData');
+
+          if (currentCategory > 0) {
+            return res.redirect(`/category/${currentCategory}`)
           }
           return res.redirect('/')
         })

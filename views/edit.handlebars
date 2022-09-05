@@ -27,11 +27,9 @@
       <label for="record-category" class="record-label-main">類別* : </label>
       <select name="category" id="record-category" class="record-date" required>
         <option class="record-category-option" value="">select</option>
-        <option class="record-category-option" value="1" {{one_selected}}>家居物業</option>
-        <option class="record-category-option" value="2" {{two_selected}}>交通出行</option>
-        <option class="record-category-option" value="3" {{three_selected}}>休閒娛樂</option>
-        <option class="record-category-option" value="4" {{four_selected}}>餐飲食品</option>
-        <option class="record-category-option" value="5" {{five_selected}}>其他</option>
+          {{#each category}}
+              <option class="category-selector-option" value="{{this.id}}" {{this.selected}}>{{this.name}}</option>
+          {{/each}}
       </select>
       <div class="warning"> </div>
 

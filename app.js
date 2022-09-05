@@ -3,7 +3,7 @@ const session = require('express-session');
 const usePassport = require('./config/passport');
 const flash = require('connect-flash');
 
-let currentCategory = 0;
+
 
 if (process.env.NODE_ENV !== 'profuction') {
   require('dotenv').config();
