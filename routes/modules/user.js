@@ -6,6 +6,7 @@ const User = require('../../models/user');
 
 
 
+
 //get /users/login
 router.get('/login' , (req , res) => {
   if (req.isAuthenticated()) {
