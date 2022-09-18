@@ -3,7 +3,8 @@ const express = require('express');
 const getFormattedDate = require('../../public/scripts/function');
 const router = express.Router();
 const Record = require('../../models/record');
-let {categoryList} = require('../../public/scripts/categoryData');
+const Category = require('../../models/category');
+let { categoryIcon } = require('../../public/scripts/categoryData');
 
 
 router.get('/' , (req , res) => {
@@ -11,32 +12,24 @@ router.get('/' , (req , res) => {
   let totalAmount = 0;
   require('../../public/scripts/categoryData').currentCategory = 0;
 
-  //把select清空
-  categoryList.forEach(category => {
-    category.selected = '';
+  return Promise.all([
+    Record.find({ userId }).lean(),
+    Category.find().lean().sort({ id : 'asc' })
+  ]) 
+  .then(([records , categories]) => {
+    
+    let categoryList = categories.map(category => {
+      return {...category , 'select' : '' , 'icon' : categoryIcon[category.id - 1] || ''}
+    })
+    records = records.map(record => {
+      return {...record , 'icon' : categoryList[record.categoryId - 1].icon , 'date' : getFormattedDate(record.date)}
+    })
+    records.forEach(record => {
+      totalAmount += record.amount;
+    })
+    return res.render('index' , { records , totalAmount , category : categoryList })
   })
-
-  Record.find({ userId })
-        .lean()
-        .then(records => {
-          let newRecordsArr = []
-          records.forEach(record => {
-            const iconObj = { 'icon' : categoryList[record.categoryId - 1].icon }
-            //合併record與icon物件
-            const newAppendObj = { ...record , ...iconObj }
-            newRecordsArr.push(newAppendObj)
-
-            totalAmount += record.amount;
-          })
-          return newRecordsArr;
-        })
-        .then(newRecordsArr => {
-          newRecordsArr.forEach(record => {
-            record.date = getFormattedDate(record.date)
-          })
-          return res.render('index' , { records : newRecordsArr , totalAmount , category : categoryList })
-        })
-        .catch(err => console.log(err))
+  .catch(err => console.log(err))
 })
 
 module.exports = router;
